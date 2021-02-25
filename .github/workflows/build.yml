@@ -56,19 +56,13 @@ jobs:
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          automatic_release_tag: latest
-          prerelease: ${{ contains(fromJson(steps.readFabricModJson.outputs.fabricModJson).version, '-pre')}}
+          automatic_release_tag: v${{ fromJson(steps.readFabricModJson.outputs.fabricModJson).version }}
+          prerelease: ${{ contains(fromJson(steps.readFabricModJson.outputs.fabricModJson).version, 'pre')}}
           title: ${{ fromJson(steps.readFabricModJson.outputs.fabricModJson).version }}
           files: build/libs/
-      - name: add version tag
-        if: ${{ runner.os == 'Linux' && matrix.java == '11' && success() }}
-        uses: actions/github-script@v3
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            github.git.createRef({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              ref: "refs/tags/v${{ fromJson(steps.readFabricModJson.outputs.fabricModJson).version }}",
-              sha: context.sha
-            })
+      - name: Update Tag
+        uses: richardsimko/update-tag@v1.0.5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
+        with: 
+          tag_name: latest
