@@ -5,7 +5,7 @@ import java.util.Arrays;
 import net.fabricmc.api.ModInitializer;
 import tech.tobot.morevillagers.base.Loader;
 import tech.tobot.morevillagers.base.handler.LogHandler;
-import tech.tobot.morevillagers.module.Beekeepers;
+import tech.tobot.morevillagers.module.Beekeeper;
 import tech.tobot.morevillagers.module.Core;
 
 public class MoreVillagers implements ModInitializer {
@@ -18,7 +18,7 @@ public class MoreVillagers implements ModInitializer {
 		if (hasRunFirst)
 			return;
 
-		new Loader(MOD_ID, Arrays.asList(Beekeepers.class, Core.class));
+		new Loader(MOD_ID, Arrays.asList(Beekeeper.class, Core.class));
 	}
 
 	@Override
