@@ -55,13 +55,13 @@ jobs:
         if: ${{ runner.os == 'Linux' && matrix.java == '11' && success() }}
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          automatic_release_tag: latest
           prerelease: ${{ contains(fromJson(steps.readFabricModJson.outputs.fabricModJson).version, '-pre')}}
-          title: "${{ fromJson(steps.readFabricModJson.outputs.fabricModJson).version }}"
+          title: ${{ fromJson(steps.readFabricModJson.outputs.fabricModJson).version }}
           files: build/libs/
-      - name: add version tag if not prerelease
-        if: ${{ runner.os == 'Linux' && matrix.java == '11' && success() && !contains(fromJson(steps.readFabricModJson.outputs.fabricModJson).version, '-pre') }}
+      - name: add version tag
+        if: ${{ runner.os == 'Linux' && matrix.java == '11' && success() }}
         uses: actions/github-script@v3
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -69,6 +69,6 @@ jobs:
             github.git.createRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              ref: "refs/tags/${{ fromJson(steps.readFabricModJson.outputs.fabricModJson).version }}",
+              ref: "refs/tags/v${{ fromJson(steps.readFabricModJson.outputs.fabricModJson).version }}",
               sha: context.sha
             })
