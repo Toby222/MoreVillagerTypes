@@ -57,11 +57,11 @@ jobs:
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: "latest"
-          prerelease: ${{ endsWith(fromJson(steps.readFabricModJson.outputs.fabricModJson).version, '-pre')}}
+          prerelease: ${{ contains(fromJson(steps.readFabricModJson.outputs.fabricModJson).version, '-pre')}}
           title: "${{ fromJson(steps.readFabricModJson.outputs.fabricModJson).version }}"
           files: build/libs/
       - name: add version tag if not prerelease
-        if: ${{ runner.os == 'Linux' && matrix.java == '11' && success() && !endsWith(fromJson(steps.readFabricModJson.outputs.fabricModJson).version, '-pre') }}
+        if: ${{ runner.os == 'Linux' && matrix.java == '11' && success() && !contains(fromJson(steps.readFabricModJson.outputs.fabricModJson).version, '-pre') }}
         uses: actions/github-script@v3
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
