@@ -9,15 +9,27 @@ import tech.tobot.morevillagers.base.helper.VillagerHelper;
 import tech.tobot.morevillagers.block.Workstation;
 
 public abstract class CustomVillagerProfession extends ModModule {
-  public static final String PROFESSION_NAME = null;
+  public final String professionName;
+  public final Identifier villagerIdentifier;
   public static Workstation workStation;
-  public static SoundEvent workSound;
+  public final SoundEvent workSound;
   public static VillagerProfession profession;
-  public static final Identifier villagerIdentifier = new Identifier(MoreVillagers.MOD_ID, PROFESSION_NAME);
+
+  protected CustomVillagerProfession(String professionName) {
+    this.professionName = professionName;
+    villagerIdentifier = new Identifier(MoreVillagers.MOD_ID, professionName);
+    workSound = null;
+  }
+
+  protected CustomVillagerProfession(String professionName, SoundEvent workSound) {
+    this.professionName = professionName;
+    villagerIdentifier = new Identifier(MoreVillagers.MOD_ID, professionName);
+    this.workSound = workSound;
+  }
 
   @Override
   public void register() {
-    workStation = new Workstation(this, PROFESSION_NAME);
+    workStation = new Workstation(this, professionName);
   }
 
   @Override

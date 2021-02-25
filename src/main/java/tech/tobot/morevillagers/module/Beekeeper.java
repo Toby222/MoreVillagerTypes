@@ -20,6 +20,10 @@ public class Beekeeper extends CustomVillagerProfession {
   @Config(name = "Beekeeper house weight", description = "Chance of a custom building to spawn. For reference, a vanilla library is 5.")
   public static int buildingWeight = 5;
 
+  public Beekeeper() {
+    super("beekeeper");
+  }
+
   protected void addTrades() {
     // register beekeeper trades
     addTrade(profession, 1, new BeekeeperTradeOffers.EmeraldsForFlowers());
