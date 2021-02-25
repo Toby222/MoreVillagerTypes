@@ -5,7 +5,7 @@ import net.minecraft.client.MinecraftClient;
 public abstract class ClientModule {
     protected ModModule module;
 
-    public ClientModule(ModModule module) {
+    protected ClientModule(ModModule module) {
         this.module = module;
     }
 

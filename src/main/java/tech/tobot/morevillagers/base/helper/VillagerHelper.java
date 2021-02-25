@@ -3,7 +3,6 @@ package tech.tobot.morevillagers.base.helper;
 import static net.minecraft.village.TradeOffers.PROFESSION_TO_LEVELED_TRADE;
 import static net.minecraft.village.TradeOffers.WANDERING_TRADER_TRADES;
 
-import tech.tobot.morevillagers.base.handler.RegistryHandler;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -28,8 +27,12 @@ import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TradeOffers.Factory;
 import net.minecraft.village.VillagerProfession;
 import net.minecraft.world.poi.PointOfInterestType;
+import tech.tobot.morevillagers.base.handler.RegistryHandler;
 
 public class VillagerHelper {
+    private VillagerHelper() {
+    }
+
     public static VillagerProfession addProfession(Identifier id, PointOfInterestType poit, SoundEvent worksound) {
         VillagerProfession profession = VillagerProfessionAccessor.create(id.toString(), poit, ImmutableSet.of(),
                 ImmutableSet.of(), worksound);
@@ -53,9 +56,8 @@ public class VillagerHelper {
             mutableTrades.put(i, DefaultedList.of());
         }
 
-        fixedTrades.int2ObjectEntrySet().forEach(e -> {
-            Arrays.stream(e.getValue()).forEach(a -> mutableTrades.get(e.getIntKey()).add(a));
-        });
+        fixedTrades.int2ObjectEntrySet()
+                .forEach(e -> Arrays.stream(e.getValue()).forEach(a -> mutableTrades.get(e.getIntKey()).add(a)));
 
         mutableTrades.get(level).add(trade);
 
@@ -79,7 +81,7 @@ public class VillagerHelper {
         }
     }
 
-    public static abstract class SingleItemTypeTrade implements Factory {
+    public abstract static class SingleItemTypeTrade implements Factory {
         protected ItemConvertible in = Items.AIR;
         protected ItemConvertible out = Items.EMERALD;
         protected int inCount = 1;

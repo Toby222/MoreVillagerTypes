@@ -20,6 +20,8 @@ import net.minecraft.village.TradeOffers;
 import tech.tobot.morevillagers.base.helper.VillagerHelper.SingleItemTypeTrade;
 
 public class BeekeeperTradeOffers {
+  private BeekeeperTradeOffers() {
+  }
   public static class EmeraldsForFlowers extends SingleItemTypeTrade {
     @Nullable
     @Override

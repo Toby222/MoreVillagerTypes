@@ -4,19 +4,20 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.function.Consumer;
-import tech.tobot.morevillagers.base.iface.Module;
+
 import tech.tobot.morevillagers.MoreVillagers;
 import tech.tobot.morevillagers.base.handler.ConfigHandler;
 import tech.tobot.morevillagers.base.handler.ModuleHandler;
+import tech.tobot.morevillagers.base.iface.Module;
 
 public class Loader {
-  private final String MOD_ID;
-  private final List<Class<? extends ModModule>> CLASSES;
-  private final Map<String, ModModule> LOADED_MODULES = new TreeMap<>();
+  private final String modId;
+  private final List<Class<? extends ModModule>> classes;
+  private final Map<String, ModModule> loadedModules = new TreeMap<>();
 
   public Loader(String modId, List<Class<? extends ModModule>> classes) {
-    MOD_ID = modId;
-    CLASSES = classes;
+    this.modId = modId;
+    this.classes = classes;
 
     MoreVillagers.LOG.info("Starting MoreVillagers module '" + modId + "'");
 
@@ -29,15 +30,15 @@ public class Loader {
   }
 
   public String getModId() {
-    return MOD_ID;
+    return modId;
   }
 
   public List<Class<? extends ModModule>> getClasses() {
-    return CLASSES;
+    return classes;
   }
 
   protected void register() {
-    CLASSES.forEach(clazz -> {
+    classes.forEach(clazz -> {
       try {
         ModModule module = clazz.getDeclaredConstructor().newInstance();
         if (clazz.isAnnotationPresent(Module.class)) {
@@ -55,7 +56,7 @@ public class Loader {
           module.client = annotation.client();
 
           String moduleName = module.getName();
-          LOADED_MODULES.put(moduleName, module);
+          loadedModules.put(moduleName, module);
 
         } else {
           throw new RuntimeException("No module annotation for class " + clazz.toString());
@@ -67,10 +68,10 @@ public class Loader {
     });
 
     // config for this module set
-    ConfigHandler.createConfig(MOD_ID, LOADED_MODULES);
+    ConfigHandler.createConfig(modId, loadedModules);
 
     // add and run register method for all loaded modules
-    LOADED_MODULES.forEach((moduleName, module) -> ModuleHandler.INSTANCE.register(module));
+    loadedModules.forEach((moduleName, module) -> ModuleHandler.INSTANCE.register(module));
   }
 
   protected void init() {
@@ -86,10 +87,10 @@ public class Loader {
   }
 
   protected void eachModule(Consumer<ModModule> consumer) {
-    LOADED_MODULES.values().forEach(consumer);
+    loadedModules.values().forEach(consumer);
   }
 
   protected void eachEnabledModule(Consumer<ModModule> consumer) {
-    LOADED_MODULES.values().stream().filter(m -> m.enabled).forEach(consumer);
+    loadedModules.values().stream().filter(m -> m.enabled).forEach(consumer);
   }
 }

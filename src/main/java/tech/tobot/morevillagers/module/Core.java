@@ -13,5 +13,5 @@ public class Core extends ModModule {
             "server_open_inventory");
 
     @Config(name = "Debug mode", description = "If true, routes additional debug messages into the standard game log.")
-    public static boolean debug = false;
+    public static final boolean DEBUG = false;
 }

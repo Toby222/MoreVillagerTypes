@@ -3,6 +3,9 @@ package tech.tobot.morevillagers.base.helper;
 import com.google.common.base.CaseFormat;
 
 public class StringHelper {
+  private StringHelper() {
+  }
+
   public static String snakeToUpperCamel(String string) {
     return CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, string);
   }

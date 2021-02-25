@@ -10,9 +10,11 @@ public class CoreClient extends ClientModule {
 
   @Override
   public void register() {
+    // TODO: Implement this method
   }
 
   @Override
   public void init() {
+    // TODO: Implement this method
   }
 }

@@ -17,29 +17,29 @@ import net.minecraft.structure.processor.StructureProcessorList;
 import net.minecraft.structure.processor.StructureProcessorLists;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.BuiltinRegistries;
-import tech.tobot.morevillagers.base.enums.ICharmEnum;
+import tech.tobot.morevillagers.base.enums.IMoreVillagersEnum;
 import tech.tobot.morevillagers.mixin.accessor.StructurePoolAccessor;
 
 public interface StructureSetupCallback {
     Map<Identifier, StructurePool> vanillaPools = new HashMap<>();
 
     Event<StructureSetupCallback> EVENT = EventFactory.createArrayBacked(StructureSetupCallback.class,
-            (listeners) -> () -> {
+            listeners -> () -> {
                 for (StructureSetupCallback listener : listeners) {
                     listener.interact();
                 }
             });
 
     static StructurePool getVanillaPool(Identifier id) {
-        if (!vanillaPools.containsKey(id)) {
+        vanillaPools.computeIfAbsent(id, identifier -> {
             StructurePool pool = BuiltinRegistries.STRUCTURE_POOL.get(id);
 
             // convert elementCounts to mutable list
             List<Pair<StructurePoolElement, Integer>> elementCounts = ((StructurePoolAccessor) pool).getElementCounts();
             ((StructurePoolAccessor) pool).setElementCounts(new ArrayList<>(elementCounts));
 
-            vanillaPools.put(id, pool);
-        }
+            return pool;
+        });
 
         return vanillaPools.get(id);
     }
@@ -70,7 +70,7 @@ public interface StructureSetupCallback {
 
     void interact();
 
-    enum VillageType implements ICharmEnum {
+    enum VillageType implements IMoreVillagersEnum {
         DESERT, PLAINS, SAVANNA, SNOWY, TAIGA
     }
 }

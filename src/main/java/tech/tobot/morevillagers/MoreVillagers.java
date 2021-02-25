@@ -10,7 +10,7 @@ import tech.tobot.morevillagers.module.Core;
 
 public class MoreVillagers implements ModInitializer {
 	public static final String MOD_ID = "morevillagers";
-	public static LogHandler LOG = new LogHandler("morevillagers");
+	public static final LogHandler LOG = new LogHandler(MOD_ID);
 
 	private static boolean hasRunFirst = false;
 
