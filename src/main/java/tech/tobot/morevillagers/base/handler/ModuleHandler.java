@@ -14,8 +14,8 @@ import tech.tobot.morevillagers.base.ModModule;
 import tech.tobot.morevillagers.base.helper.StringHelper;
 
 public class ModuleHandler {
-  public static ModuleHandler INSTANCE = new ModuleHandler();
-  public final static Map<String, ModModule> LOADED_MODULES = new TreeMap<>();
+  public static final ModuleHandler INSTANCE = new ModuleHandler();
+  public static final Map<String, ModModule> LOADED_MODULES = new TreeMap<>();
 
   private static final Map<String, Loader> LOADER_INSTANCES = new HashMap<>();
   private static final List<Class<? extends ModModule>> ENABLED_MODULES = new ArrayList<>(); // this is a cache of
@@ -50,13 +50,13 @@ public class ModuleHandler {
     boolean isEnabled = module.enabled;
     boolean dependencyCheck = module.depends();
 
-    String message;
+    String message = "Module " + name;
     if (!isEnabled) {
-      message = "Module " + name + " is not enabled.";
+      message += " is not enabled.";
     } else if (!dependencyCheck) {
-      message = "Module " + name + " did not pass dependency check, disabling.";
+      message += " did not pass dependency check, disabling.";
     } else {
-      message = "Module " + name + " is enabled.";
+      message += " is enabled.";
     }
 
     MoreVillagers.LOG.debug("[ModuleHandler] " + message);

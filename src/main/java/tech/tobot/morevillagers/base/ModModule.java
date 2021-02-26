@@ -1,10 +1,6 @@
 package tech.tobot.morevillagers.base;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.Identifier;
 
 public abstract class ModModule {
     public boolean enabled = true;
@@ -20,10 +16,6 @@ public abstract class ModModule {
 
     public String getName() {
         return this.getClass().getSimpleName();
-    }
-
-    public List<Identifier> getRecipesToRemove() {
-        return new ArrayList<>();
     }
 
     public void register() {

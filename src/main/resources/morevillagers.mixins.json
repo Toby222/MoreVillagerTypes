@@ -5,7 +5,8 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "accessor.PointOfInterestTypeAccessor",
-    "accessor.StructurePoolAccessor"
+    "accessor.StructurePoolAccessor",
+    "RecipeManagerMixin"
   ],
   "client": [],
   "injectors": {

@@ -3,7 +3,7 @@ package tech.tobot.morevillagers.module;
 import static tech.tobot.morevillagers.base.helper.VillagerHelper.addTrade;
 import static tech.tobot.morevillagers.event.StructureSetupCallback.addVillageHouse;
 
-import net.minecraft.sound.SoundEvent;
+import net.minecraft.item.Items;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import tech.tobot.morevillagers.MoreVillagers;
@@ -15,13 +15,12 @@ import tech.tobot.morevillagers.trades.BeekeeperTradeOffers;
 
 @Module(mod = MoreVillagers.MOD_ID, description = "Beekeepers are villagers that trade beekeeping items. Their job site is the beehive.")
 public class Beekeeper extends CustomVillagerProfession {
-  public static SoundEvent workSound = SoundEvents.BLOCK_BEEHIVE_WORK;
 
   @Config(name = "Beekeeper house weight", description = "Chance of a custom building to spawn. For reference, a vanilla library is 5.")
   public static int buildingWeight = 5;
 
   public Beekeeper() {
-    super("beekeeper");
+    super("beekeeper", Items.HONEY_BOTTLE, SoundEvents.BLOCK_BEEHIVE_WORK);
   }
 
   protected void addTrades() {
