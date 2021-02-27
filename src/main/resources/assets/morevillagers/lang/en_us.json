@@ -1,4 +1,7 @@
 {
   "entity.minecraft.villager.beekeeper": "Beekeeper",
-  "block.morevillagers.beekeeper_workstation": "Beekeeper's Workpost"
+  "entity.minecraft.villager.lumberjack": "Lumberjack",
+  "block.morevillagers.base_workstation": "Unused Workpost",
+  "block.morevillagers.beekeeper_workstation": "Beekeeper's Workpost",
+  "block.morevillagers.lumberjack_workstation": "Lumberjack's Workshop"
 }

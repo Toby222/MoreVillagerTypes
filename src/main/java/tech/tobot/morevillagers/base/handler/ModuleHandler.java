@@ -21,14 +21,6 @@ public class ModuleHandler {
   private static final List<Class<? extends ModModule>> ENABLED_MODULES = new ArrayList<>(); // this is a cache of
                                                                                              // enabled classes
 
-  // private ModuleHandler() {
-  // // listen for server world loading events
-  // LoadWorldCallback.EVENT.register(server -> {
-  // // load late so that tags are populated at this point
-  // DecorationHandler.init();
-  // });
-  // }
-
   public void addLoader(Loader loader) {
     LOADER_INSTANCES.put(loader.getModId(), loader);
   }
@@ -99,10 +91,7 @@ public class ModuleHandler {
    * @return True if the module is enabled
    */
   public static boolean enabled(String moduleName) {
-    String[] split = moduleName.split(":");
-    String modModule = split[1];
-
-    ModModule module = getModule(modModule);
+    ModModule module = getModule(moduleName);
     return module != null && module.enabled;
   }
 }

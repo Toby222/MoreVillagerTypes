@@ -7,6 +7,7 @@ import tech.tobot.morevillagers.base.Loader;
 import tech.tobot.morevillagers.base.handler.LogHandler;
 import tech.tobot.morevillagers.module.Beekeeper;
 import tech.tobot.morevillagers.module.Core;
+import tech.tobot.morevillagers.module.Lumberjack;
 
 public class MoreVillagers implements ModInitializer {
 	public static final String MOD_ID = "morevillagers";
@@ -18,7 +19,7 @@ public class MoreVillagers implements ModInitializer {
 		if (hasRunFirst)
 			return;
 
-		new Loader(MOD_ID, Arrays.asList(Beekeeper.class, Core.class));
+		new Loader(MOD_ID, Arrays.asList(Beekeeper.class, Core.class, Lumberjack.class));
 	}
 
 	@Override

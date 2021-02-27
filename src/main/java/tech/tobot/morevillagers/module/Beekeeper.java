@@ -49,9 +49,9 @@ public class Beekeeper extends CustomVillagerProfession {
         new Identifier(MoreVillagers.MOD_ID, "village/savanna/houses/savanna_beekeeper_2"), buildingWeight);
 
     // beekeeper + lumberjack
-    // addVillageHouse(VillageType.SNOWY, new Identifier(MoreVillagers.MOD_ID,
-    // "village/snowy/houses/snowy_lumberbee_1"), buildingWeight);
-    // addVillageHouse(VillageType.PLAINS, new Identifier(MoreVillagers.MOD_ID,
-    // "village/plains/houses/plains_beejack_1"), buildingWeight);
+    addVillageHouse(VillageType.SNOWY, new Identifier(MoreVillagers.MOD_ID, "village/snowy/houses/snowy_lumberbee_1"),
+        buildingWeight);
+    addVillageHouse(VillageType.PLAINS, new Identifier(MoreVillagers.MOD_ID, "village/plains/houses/plains_beejack_1"),
+        buildingWeight);
   }
 }

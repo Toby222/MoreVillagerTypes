@@ -1,6 +1,6 @@
 {
   "parent": "morevillagers:block/base_workstation",
   "textures": {
-    "top": "morevillagers:block/beekeeper_workstation"
+    "top": "morevillagers:block/lumberjack_workstation"
   }
 }
