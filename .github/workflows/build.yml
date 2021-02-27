@@ -71,13 +71,14 @@ jobs:
           title: ${{ fromJson(steps.readFabricModJson.outputs.fabricModJson).version }}
           files: build/libs/
       - name: set version tag
+        if: ${{ runner.os == 'Linux' && matrix.java == '11' }}
         uses: richardsimko/update-tag@v1.0.5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
         with: 
           tag_name: v${{ fromJson(steps.readFabricModJson.outputs.fabricModJson).version }}
       - name: set latest-pre tag for full version
-        if: ${{ !contains(fromJson(steps.readFabricModJson.outputs.fabricModJson).version, 'pre')}}
+        if: ${{ runner.os == 'Linux' && matrix.java == '11' && !contains(fromJson(steps.readFabricModJson.outputs.fabricModJson).version, 'pre')}}
         uses: richardsimko/update-tag@v1.0.5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
