@@ -1,0 +1,49 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "morevillagers:block/base_workstation",
+    "top": "morevillagers:block/base_workstation",
+    "sides": "morevillagers:block/base_workstation",
+    "bottom": "morevillagers:block/base_workstation"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "faces": {
+        "down": {
+          "texture": "#bottom",
+          "cullface": "down"
+        },
+        "up": {
+          "texture": "#top",
+          "cullface": "up"
+        },
+        "north": {
+          "texture": "#sides",
+          "cullface": "north"
+        },
+        "south": {
+          "texture": "#sides",
+          "cullface": "south"
+        },
+        "west": {
+          "texture": "#sides",
+          "cullface": "west"
+        },
+        "east": {
+          "texture": "#sides",
+          "cullface": "east"
+        }
+      }
+    }
+  ]
+}

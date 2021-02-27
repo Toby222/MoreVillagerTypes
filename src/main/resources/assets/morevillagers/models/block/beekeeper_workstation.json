@@ -1,6 +1,6 @@
 {
-  "parent": "block/cube_all",
+  "parent": "morevillagers:block/base_workstation",
   "textures": {
-    "all": "morevillagers:block/beekeeper_workstation"
-  }
+      "top": "morevillagers:block/beekeeper_workstation"
+    }
 }
