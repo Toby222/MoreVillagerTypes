@@ -6,16 +6,11 @@ import net.minecraft.item.Items;
 import net.minecraft.sound.SoundEvents;
 import tech.tobot.morevillagers.MoreVillagers;
 import tech.tobot.morevillagers.base.CustomVillagerProfession;
-import tech.tobot.morevillagers.base.iface.Config;
 import tech.tobot.morevillagers.base.iface.Module;
 import tech.tobot.morevillagers.trades.BeekeeperTradeOffers;
 
 @Module(mod = MoreVillagers.MOD_ID, description = "Beekeepers are villagers that trade beekeeping items.")
 public class Beekeeper extends CustomVillagerProfession {
-
-  @Config(name = "Beekeeper house weight", description = "Chance of a custom building to spawn. For reference, a vanilla library is 5.")
-  public static int buildingWeight = 5;
-
   public Beekeeper() {
     super("beekeeper", Items.HONEY_BOTTLE, SoundEvents.BLOCK_BEEHIVE_WORK);
   }

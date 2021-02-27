@@ -3,5 +3,6 @@
   "entity.minecraft.villager.lumberjack": "Lumberjack",
   "block.morevillagers.base_workstation": "Unused Workpost",
   "block.morevillagers.beekeeper_workstation": "Beekeeper's Workpost",
-  "block.morevillagers.lumberjack_workstation": "Lumberjack's Workshop"
+  "block.morevillagers.lumberjack_workstation": "Lumberjack's Workshop",
+  "item.morevillagers.populated_beehive": "Honey Farm Starter Pack"
 }

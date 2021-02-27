@@ -13,9 +13,7 @@ import tech.tobot.morevillagers.trades.LumberjackTradeOffers;
 @Module(mod = MoreVillagers.MOD_ID, description = "Lumberjacks are villagers that trade woodworking items.")
 public class Lumberjack extends CustomVillagerProfession {
 
-  @Config(name = "Lumberjack house weight", description = "Chance of a custom building to spawn. For reference, a vanilla library is 5.")
-  public static int buildingWeight = 5;
-  @Config(name = "Enable new bookshelf trades", description = "Enable trading emeralds for bookshelves. (Changing won't affect already existing villagers)")
+  @Config(name = "Enable bookshelf trades", description = "Enable trading emeralds for bookshelves. (Changing won't affect already existing villagers)")
   public static boolean addBookshelfTrade = true;
 
   public Lumberjack() {

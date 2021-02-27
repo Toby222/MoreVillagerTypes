@@ -126,7 +126,7 @@ public class BeekeeperTradeOffers {
       honeyTag.putInt("honey_level", 0);
       out.putSubTag("BlockEntityTag", beesTag);
       out.putSubTag("BlockStateTag", honeyTag);
-      out.setCustomName(new TranslatableText("item.charm.populated_beehive"));
+      out.setCustomName(new TranslatableText("item.morevillagers.populated_beehive"));
 
       return new TradeOffer(in1, out, 1, 10, 0.2F);
     }
