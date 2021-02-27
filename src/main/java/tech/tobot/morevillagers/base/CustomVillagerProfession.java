@@ -45,10 +45,7 @@ public abstract class CustomVillagerProfession extends ModModule {
     profession = VillagerHelper.addProfession(villagerIdentifier, poit, workSound);
 
     addTrades();
-    addVillageHouses();
   }
 
   protected abstract void addTrades();
-
-  protected abstract void addVillageHouses();
 }
