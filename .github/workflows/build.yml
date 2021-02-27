@@ -51,18 +51,35 @@ jobs:
           content="${content//$'\r'/'%0D'}"
           # end of optional handling for multi line json
           echo "::set-output name=fabricModJson::$content"
-      - name: create new release with latest tag
-        if: ${{ runner.os == 'Linux' && matrix.java == '11' && success() }}
+
+      - name: if pre-release create new release with latest-pre tag
+        if: ${{ runner.os == 'Linux' && matrix.java == '11' && contains(fromJson(steps.readFabricModJson.outputs.fabricModJson).version, 'pre')}}
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          automatic_release_tag: v${{ fromJson(steps.readFabricModJson.outputs.fabricModJson).version }}
-          prerelease: ${{ contains(fromJson(steps.readFabricModJson.outputs.fabricModJson).version, 'pre')}}
+          automatic_release_tag: latest-pre
+          prerelease: true
           title: ${{ fromJson(steps.readFabricModJson.outputs.fabricModJson).version }}
           files: build/libs/
-      - name: Update Tag
+      - name: if release create new release with latest tag
+        if: ${{ runner.os == 'Linux' && matrix.java == '11' && !contains(fromJson(steps.readFabricModJson.outputs.fabricModJson).version, 'pre')}}
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          automatic_release_tag: latest
+          prerelease: false
+          title: ${{ fromJson(steps.readFabricModJson.outputs.fabricModJson).version }}
+          files: build/libs/
+      - name: set version tag
         uses: richardsimko/update-tag@v1.0.5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
         with: 
-          tag_name: latest
+          tag_name: v${{ fromJson(steps.readFabricModJson.outputs.fabricModJson).version }}
+      - name: set latest-pre tag for full version
+        if: ${{ !contains(fromJson(steps.readFabricModJson.outputs.fabricModJson).version, 'pre')}}
+        uses: richardsimko/update-tag@v1.0.5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
+        with: 
+          tag_name: latest-pre
