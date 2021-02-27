@@ -10,7 +10,7 @@ import tech.tobot.morevillagers.base.iface.Config;
 import tech.tobot.morevillagers.base.iface.Module;
 import tech.tobot.morevillagers.trades.BeekeeperTradeOffers;
 
-@Module(mod = MoreVillagers.MOD_ID, description = "Beekeepers are villagers that trade beekeeping items. Their job site is the beehive.")
+@Module(mod = MoreVillagers.MOD_ID, description = "Beekeepers are villagers that trade beekeeping items.")
 public class Beekeeper extends CustomVillagerProfession {
 
   @Config(name = "Beekeeper house weight", description = "Chance of a custom building to spawn. For reference, a vanilla library is 5.")
