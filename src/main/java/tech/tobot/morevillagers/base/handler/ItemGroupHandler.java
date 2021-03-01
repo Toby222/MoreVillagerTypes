@@ -22,12 +22,8 @@ public class ItemGroupHandler {
     ITEMS.add(item);
   }
 
-  public static void addItems(ItemStack... items) {
-    ITEMS.addAll(List.of(items));
-  }
-
-  public static void addItems(Item... items) {
-    ITEMS.addAll(List.of(items).stream().map(ItemStack::new).collect(Collectors.toList()));
+  public static void addItems(List<ItemStack> items) {
+    ITEMS.addAll(items);
   }
 
   public static List<ItemStack> getItems() {
