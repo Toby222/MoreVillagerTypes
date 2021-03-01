@@ -1,8 +1,14 @@
 {
   "entity.minecraft.villager.beekeeper": "Beekeeper",
+  "entity.minecraft.villager.innkeeper": "Innkeeper",
   "entity.minecraft.villager.lumberjack": "Lumberjack",
   "block.morevillagers.base_workstation": "Unused Workpost",
   "block.morevillagers.beekeeper_workstation": "Beekeeper's Workpost",
+  "block.morevillagers.innkeeper_workstation": "Innkeeper's Workpost",
   "block.morevillagers.lumberjack_workstation": "Lumberjack's Workshop",
-  "item.morevillagers.populated_beehive": "Honey Farm Starter Pack"
+  "item.morevillagers.populated_beehive": "Honey Farm Starter Pack",
+  "item.morevillagers.mineral_water": "Clear Mineral Water",
+  "item.morevillagers.spiked_fire_resistance": "Weird Fire Resistance Potion",
+  "item.morevillagers.booze": "Booze",
+  "itemGroup.morevillagers.creative_tab": "More Villagers Items"
 }

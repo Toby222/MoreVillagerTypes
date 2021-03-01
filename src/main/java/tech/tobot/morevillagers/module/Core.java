@@ -11,9 +11,14 @@ import tech.tobot.morevillagers.client.CoreClient;
 public class Core extends ModModule {
     @Config(name = "Debug mode", description = "If true, routes additional debug messages into the standard game log.")
     public static final boolean DEBUG = false;
+    private static CustomWorkstation baseWorkstation;
+
+    public static CustomWorkstation getBaseWorkstation() {
+        return baseWorkstation;
+    }
 
     @Override
     public void register() {
-        new CustomWorkstation(this, "base", null);
+        baseWorkstation = new CustomWorkstation(this, "base", null);
     }
 }

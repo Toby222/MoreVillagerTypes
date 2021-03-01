@@ -14,6 +14,7 @@ import net.minecraft.util.registry.Registry;
 import tech.tobot.morevillagers.MoreVillagers;
 import tech.tobot.morevillagers.base.ModModule;
 import tech.tobot.morevillagers.base.block.CustomBlock;
+import tech.tobot.morevillagers.base.handler.ItemGroupHandler;
 import tech.tobot.morevillagers.base.handler.RecipeHandler;
 
 public class CustomWorkstation extends CustomBlock {
@@ -30,8 +31,12 @@ public class CustomWorkstation extends CustomBlock {
     super(module, workstation(profession),
         FabricBlockSettings.copyOf(Blocks.OAK_PLANKS)
             .drops(new Identifier(MoreVillagers.MOD_ID, workstation(profession))).breakByTool(FabricToolTags.AXES)
+            .hardness(0.5F)
             .breakByHand(true));
     this.lootTableId = new Identifier(MoreVillagers.MOD_ID, "blocks/workstations/" + workstation(profession));
+
+    ItemGroupHandler.addItem(asItem());
+
     MoreVillagers.LOG.debug("Created workstation " + blockIdentifier + " with loot table " + lootTableId);
 
     if (craftingItem == null)

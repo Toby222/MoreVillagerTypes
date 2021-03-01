@@ -1,0 +1,6 @@
+{
+  "parent": "morevillagers:block/base_workstation",
+  "textures": {
+    "top": "morevillagers:block/innkeeper_workstation"
+  }
+}
