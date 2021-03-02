@@ -3,6 +3,8 @@ package tech.tobot.morevillagers.base.handler;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.jetbrains.annotations.Nullable;
+
 import tech.tobot.morevillagers.base.CustomVillagerProfession;
 import tech.tobot.morevillagers.block.CustomWorkstation;
 
@@ -12,6 +14,7 @@ public class CustomWorkstationHandler {
   private CustomWorkstationHandler() {
   }
 
+  @Nullable
   public static CustomWorkstation getWorkstation(Class<? extends CustomVillagerProfession> profession) {
     return workstations.getOrDefault(profession, null);
   }

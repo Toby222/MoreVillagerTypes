@@ -6,7 +6,8 @@
   "mixins": [
     "accessor.PointOfInterestTypeAccessor",
     "accessor.StructurePoolAccessor",
-    "RecipeManagerMixin"
+    "RecipeManagerMixin",
+    "VillagerEntityInteractionMixin"
   ],
   "client": [],
   "injectors": {

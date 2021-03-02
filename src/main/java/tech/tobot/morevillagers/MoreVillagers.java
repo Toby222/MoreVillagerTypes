@@ -12,6 +12,7 @@ import tech.tobot.morevillagers.base.handler.ItemGroupHandler;
 import tech.tobot.morevillagers.base.handler.LogHandler;
 import tech.tobot.morevillagers.module.Beekeeper;
 import tech.tobot.morevillagers.module.Core;
+import tech.tobot.morevillagers.module.Coupon;
 import tech.tobot.morevillagers.module.Innkeeper;
 import tech.tobot.morevillagers.module.Lumberjack;
 
@@ -28,7 +29,7 @@ public class MoreVillagers implements ModInitializer {
 		if (hasRunFirst)
 			return;
 
-		new Loader(MOD_ID, Arrays.asList(Core.class, Beekeeper.class, Lumberjack.class, Innkeeper.class));
+		new Loader(MOD_ID, Arrays.asList(Core.class, Beekeeper.class, Lumberjack.class, Innkeeper.class, Coupon.class));
 	}
 
 	@Override

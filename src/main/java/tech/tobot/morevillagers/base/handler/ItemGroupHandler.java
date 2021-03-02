@@ -2,7 +2,6 @@ package tech.tobot.morevillagers.base.handler;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

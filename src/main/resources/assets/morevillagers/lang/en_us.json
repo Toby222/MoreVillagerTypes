@@ -10,5 +10,6 @@
   "item.morevillagers.mineral_water": "Clear Mineral Water",
   "item.morevillagers.spiked_fire_resistance": "Weird Fire Resistance Potion",
   "item.morevillagers.booze": "Booze",
-  "itemGroup.morevillagers.creative_tab": "More Villagers Items"
+  "itemGroup.morevillagers.creative_tab": "More Villagers Items",
+  "item.morevillagers.coupon": "Coupon"
 }
