@@ -27,10 +27,6 @@ public class CouponItem extends ModItem {
       return ActionResult.FAIL;
     }
 
-    if (user.world.isClient) {
-      return ActionResult.success(true);
-    }
-
     VillagerEntity villager = (VillagerEntity) entity;
     TradeOfferList tradeOffers = villager.getOffers();
     if (tradeOffers.isEmpty()) {
@@ -45,14 +41,18 @@ public class CouponItem extends ModItem {
     MoreVillagers.LOG
         .debug("Used CouponItem - First: " + firstBuy.getItem().equals(Items.EMERALD) + ".." + firstBuy.getCount());
 
-    if (secondBuy.getItem().equals(Items.EMERALD) && secondBuy.getCount() > 1) {
+    if (secondBuy.getCount() > 1) {
       MoreVillagers.LOG.debug("Used CouponItem - Lowering second item");
       secondBuy.decrement(1);
-    } else if (firstBuy.getItem().equals(Items.EMERALD) && firstBuy.getCount() > 1) {
+    } else if (firstBuy.getCount() > 1) {
       MoreVillagers.LOG.debug("Used CouponItem - Lowering first item");
       firstBuy.decrement(1);
     } else {
       return ActionResult.success(false);
+    }
+
+    if (user.world.isClient) {
+      return ActionResult.success(true);
     }
 
     tradeOffers.set(i, new TradeOffer(firstBuy, secondBuy, randomOffer.getSellItem(), randomOffer.getUses(),
@@ -63,7 +63,7 @@ public class CouponItem extends ModItem {
       stack.decrement(1);
     }
 
-    return ActionResult.success(false);
+    return ActionResult.success(true);
   }
 
   @Override
