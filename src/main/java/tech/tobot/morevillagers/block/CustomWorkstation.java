@@ -38,7 +38,7 @@ public class CustomWorkstation extends CustomBlock {
     
     JModel itemModel = JModel.model("morevillagers:block/" + workstation(profession));
     MoreVillagers.LOG.debug("Generated Item Model for " + blockIdentifier);
-    MoreVillagers.RESOURCE_PACK.addModel(itemModel, new Identifier(module.mod, "block/" + workstation(profession)));
+    MoreVillagers.RESOURCE_PACK.addModel(itemModel, new Identifier(module.mod, "item/" + workstation(profession)));
     
     if(craftingItem == null) return;
     
