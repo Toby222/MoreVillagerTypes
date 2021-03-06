@@ -1,9 +1,7 @@
 package tech.tobot.morevillagers.base.block;
 
 import net.devtech.arrp.json.loot.JLootTable;
-import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -11,7 +9,6 @@ import net.minecraft.util.Identifier;
 import tech.tobot.morevillagers.MoreVillagers;
 import tech.tobot.morevillagers.base.ModModule;
 import tech.tobot.morevillagers.base.handler.RegistryHandler;
-import tech.tobot.morevillagers.mixin.accessor.FireBlockAccessor;
 
 import java.util.function.BiConsumer;
 
@@ -54,13 +51,5 @@ public interface ICustomBlock {
   
   default BiConsumer<ItemStack, Boolean> getInventoryTickConsumer() {
     return null;
-  }
-  
-  default void setBurnTime(int burnTime) {
-    FuelRegistry.INSTANCE.add((Block) this, burnTime);
-  }
-  
-  default void setFireInfo(int encouragement, int flammability) {
-    ((FireBlockAccessor) Blocks.FIRE).invokeRegisterFlammableBlock((Block) this, encouragement, flammability);
   }
 }
