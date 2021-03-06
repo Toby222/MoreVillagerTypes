@@ -16,6 +16,9 @@ repositories {
     // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
     // See https://docs.gradle.org/current/userguide/declaring_repositories.html
     // for more information about repositories.
+    maven {
+        url = 'https://raw.githubusercontent.com/Devan-Kerman/Devan-Repo/master/'
+    }
 }
 
 minecraft {
@@ -41,6 +44,8 @@ dependencies {
     include "com.moandjiezana.toml:toml4j:${project.toml4j_version}"
     include "com.electronwill.night-config:core:${project.tomlnc_version}"
     include "com.electronwill.night-config:toml:${project.tomlnc_version}"
+
+    modImplementation group: 'net.devtech', name: 'arrp', version: '0.3.7'
 }
 
 processResources {

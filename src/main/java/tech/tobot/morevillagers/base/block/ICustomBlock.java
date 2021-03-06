@@ -1,5 +1,6 @@
 package tech.tobot.morevillagers.base.block;
 
+import net.devtech.arrp.json.loot.JLootTable;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -21,6 +22,12 @@ public interface ICustomBlock {
     Identifier id = new Identifier(module.mod, name);
     RegistryHandler.block(id, (Block) this);
     createBlockItem(id);
+    
+    JLootTable lootTable = JLootTable.loot("minecraft:block").pool(
+        JLootTable.pool().entry(JLootTable.entry().type("minecraft:item").name(id.toString())).rolls(1)
+            .condition(JLootTable.predicate("minecraft:survives_explosion")));
+    MoreVillagers.RESOURCE_PACK.addLootTable(new Identifier(module.mod, "blocks/" + name), lootTable);
+    
     return id;
   }
   

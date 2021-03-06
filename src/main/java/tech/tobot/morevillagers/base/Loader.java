@@ -5,6 +5,7 @@ import tech.tobot.morevillagers.base.handler.ConfigHandler;
 import tech.tobot.morevillagers.base.handler.ModuleHandler;
 import tech.tobot.morevillagers.base.iface.Module;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -13,7 +14,7 @@ import java.util.function.Consumer;
 public class Loader {
   private final String                           modId;
   private final List<Class<? extends ModModule>> classes;
-  private final Map<String, ModModule>           loadedModules = new TreeMap<>();
+  private final Map<String, ModModule>           loadedModules = new LinkedHashMap<>();
   
   public Loader(String modId, List<Class<? extends ModModule>> classes) {
     this.modId   = modId;
