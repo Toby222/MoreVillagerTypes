@@ -1,17 +1,15 @@
 package tech.tobot.morevillagers.mixin.accessor;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.FireBlock;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Invoker;
 import tech.tobot.morevillagers.base.block.ICustomBlock;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.FireBlock;
-
-@Mixin(FireBlock.class)
-public interface FireBlockAccessor {
+@Mixin(FireBlock.class) public interface FireBlockAccessor {
   /**
    * Used by abstract blocks to set flammability data.
-   *
+   * <p>
    * {@link ICustomBlock#setFireInfo(int, int)}
    */
   @Invoker

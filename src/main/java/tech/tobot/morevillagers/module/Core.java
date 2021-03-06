@@ -7,18 +7,19 @@ import tech.tobot.morevillagers.base.iface.Module;
 import tech.tobot.morevillagers.block.CustomWorkstation;
 import tech.tobot.morevillagers.client.CoreClient;
 
-@Module(mod = MoreVillagers.MOD_ID, client = CoreClient.class, alwaysEnabled = true, description = "Core configuration values.")
+@Module(mod = MoreVillagers.MOD_ID, client = CoreClient.class, alwaysEnabled = true, description = "Core " +
+    "configuration values.")
 public class Core extends ModModule {
-    @Config(name = "Debug mode", description = "If true, routes additional debug messages into the standard game log.")
-    public static final boolean DEBUG = false;
-    private static CustomWorkstation baseWorkstation;
-
-    public static CustomWorkstation getBaseWorkstation() {
-        return baseWorkstation;
-    }
-
-    @Override
-    public void register() {
-        baseWorkstation = new CustomWorkstation(this, "base", null);
-    }
+  @Config(name = "Debug mode", description = "If true, routes additional debug messages into the standard game log.")
+  public static final boolean           DEBUG = false;
+  private static      CustomWorkstation baseWorkstation;
+  
+  public static CustomWorkstation getBaseWorkstation() {
+    return baseWorkstation;
+  }
+  
+  @Override
+  public void register() {
+    baseWorkstation = new CustomWorkstation(this, "base", null);
+  }
 }

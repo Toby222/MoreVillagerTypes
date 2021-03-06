@@ -10,17 +10,16 @@ import java.util.function.BiConsumer;
 
 public class CustomBlockItem extends BlockItem {
   private final BiConsumer<ItemStack, Boolean> inventoryTickConsumer;
-
+  
   public CustomBlockItem(ICustomBlock block, Settings settings) {
     super((Block) block, settings);
-
+    
     // callable inventory tick consumer from the block
     this.inventoryTickConsumer = block.getInventoryTickConsumer();
   }
-
+  
   @Override
   public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-    if (inventoryTickConsumer != null)
-      inventoryTickConsumer.accept(stack, isSelected);
+    if(inventoryTickConsumer != null) inventoryTickConsumer.accept(stack, isSelected);
   }
 }

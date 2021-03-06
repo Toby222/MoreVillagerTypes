@@ -4,10 +4,10 @@
   "package": "tech.tobot.morevillagers.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "accessor.PointOfInterestTypeAccessor",
-    "accessor.StructurePoolAccessor",
     "RecipeManagerMixin",
-    "VillagerEntityInteractionMixin"
+    "VillagerEntityInteractionMixin",
+    "accessor.PointOfInterestTypeAccessor",
+    "accessor.StructurePoolAccessor"
   ],
   "client": [],
   "injectors": {

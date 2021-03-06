@@ -12,9 +12,9 @@ jobs:
       matrix:
         # Use these Java versions
         java: [
-          1.8,  # Minimum supported by Minecraft
-          11,   # Current Java LTS
-          15    # Latest version
+            1.8,  # Minimum supported by Minecraft
+            11,   # Current Java LTS
+            15    # Latest version
         ]
         # and run on both Linux and Windows
         os: [ubuntu-20.04, windows-latest]
@@ -75,12 +75,12 @@ jobs:
         uses: richardsimko/update-tag@v1.0.5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
-        with: 
+        with:
           tag_name: v${{ fromJson(steps.readFabricModJson.outputs.fabricModJson).version }}
       - name: set latest-pre tag for full version
         if: ${{ runner.os == 'Linux' && matrix.java == '11' && !contains(fromJson(steps.readFabricModJson.outputs.fabricModJson).version, 'pre')}}
         uses: richardsimko/update-tag@v1.0.5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
-        with: 
+        with:
           tag_name: latest-pre

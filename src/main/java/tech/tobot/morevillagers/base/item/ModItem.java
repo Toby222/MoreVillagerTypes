@@ -6,14 +6,14 @@ import tech.tobot.morevillagers.base.handler.ItemGroupHandler;
 
 public class ModItem extends Item implements IModItem {
   protected ModModule module;
-
+  
   public ModItem(ModModule module, String name, Item.Settings props) {
     super(props);
     this.module = module;
     register(module, name);
     ItemGroupHandler.addItem(this);
   }
-
+  
   @Override
   public boolean enabled() {
     return module.enabled;

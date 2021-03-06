@@ -19,58 +19,64 @@ public class CouponItem extends ModItem {
   public CouponItem(ModModule module) {
     super(module, "coupon", new Item.Settings().maxCount(16));
   }
-
+  
   @Override
   public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
     MoreVillagers.LOG.debug("Used CouponItem on Entity");
-    if (!(entity instanceof VillagerEntity)) {
+    if(!(entity instanceof VillagerEntity)) {
       return ActionResult.FAIL;
     }
-
+    
     VillagerEntity villager = (VillagerEntity) entity;
     TradeOfferList tradeOffers = villager.getOffers();
-    if (tradeOffers.isEmpty()) {
+    if(tradeOffers.isEmpty()) {
       return ActionResult.FAIL;
     }
-
+    
     Integer i = entity.world.random.nextInt(tradeOffers.size());
     MoreVillagers.LOG.debug("Selected trade #" + i + " .. (" + user.world.isClient + ")");
     TradeOffer randomOffer = tradeOffers.get(i);
-    ItemStack secondBuy = randomOffer.getSecondBuyItem();
-    ItemStack firstBuy = randomOffer.getOriginalFirstBuyItem();
+    ItemStack  secondBuy   = randomOffer.getSecondBuyItem();
+    ItemStack  firstBuy    = randomOffer.getOriginalFirstBuyItem();
     MoreVillagers.LOG
         .debug("Used CouponItem - First: " + firstBuy.getItem().equals(Items.EMERALD) + ".." + firstBuy.getCount());
-
-    if (secondBuy.getCount() > 1) {
+    
+    if(secondBuy.getCount() > 1) {
       MoreVillagers.LOG.debug("Used CouponItem - Lowering second item");
       secondBuy.decrement(1);
-    } else if (firstBuy.getCount() > 1) {
+    }
+    else if(firstBuy.getCount() > 1) {
       MoreVillagers.LOG.debug("Used CouponItem - Lowering first item");
       firstBuy.decrement(1);
-    } else {
+    }
+    else {
       return ActionResult.success(false);
     }
-
-    if (user.world.isClient) {
+    
+    if(user.world.isClient) {
       return ActionResult.success(true);
     }
-
-    tradeOffers.set(i, new TradeOffer(firstBuy, secondBuy, randomOffer.getSellItem(), randomOffer.getUses(),
-        randomOffer.getMaxUses(), randomOffer.getMerchantExperience(), randomOffer.getPriceMultiplier()));
+    
+    tradeOffers.set(
+        i,
+        new TradeOffer(firstBuy, secondBuy, randomOffer.getSellItem(), randomOffer.getUses(), randomOffer.getMaxUses(),
+                       randomOffer.getMerchantExperience(), randomOffer.getPriceMultiplier()
+        )
+    );
     villager.setOffers(tradeOffers);
-
-    if (!user.abilities.creativeMode) {
+    
+    if(!user.abilities.creativeMode) {
       stack.decrement(1);
     }
-
+    
     return ActionResult.success(true);
   }
-
+  
   @Override
   public UseAction getUseAction(ItemStack stack) {
     return UseAction.NONE;
   }
-
+  
   @Override
   public boolean enabled() {
     return module.enabled;

@@ -8,11 +8,11 @@ import tech.tobot.morevillagers.base.handler.RegistryHandler;
 
 public interface IModItem {
   boolean enabled();
-
+  
   default void register(ModModule module, String blockName) {
     RegistryHandler.item(new Identifier(module.mod, blockName), (Item) this);
   }
-
+  
   default void setBurnTime(int burnTime) {
     FuelRegistry.INSTANCE.add((Item) this, burnTime);
   }

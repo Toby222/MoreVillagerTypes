@@ -2,7 +2,6 @@
   "schemaVersion": 1,
   "id": "morevillagers",
   "version": "${version}",
-
   "name": "More Villager Types",
   "description": "This mod adds more Villager Types and workstations.",
   "authors": [
@@ -12,10 +11,8 @@
     "homepage": "https://tobot.tk/",
     "sources": "https://github.com/Toby222/MoreVillagerTypes"
   },
-
   "license": "CC0-1.0",
   "icon": "assets/morevillagers/icon.png",
-
   "environment": "*",
   "entrypoints": {
     "main": [
