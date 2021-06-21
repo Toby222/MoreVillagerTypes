@@ -57,15 +57,13 @@ public class CouponItem extends ModItem {
       return ActionResult.success(true);
     }
     
-    tradeOffers.set(
-        i,
-        new TradeOffer(firstBuy, secondBuy, randomOffer.getSellItem(), randomOffer.getUses(), randomOffer.getMaxUses(),
-                       randomOffer.getMerchantExperience(), randomOffer.getPriceMultiplier()
-        )
-    );
+    tradeOffers.set(i, new TradeOffer(firstBuy, secondBuy, randomOffer.getSellItem(), randomOffer.getUses(),
+                                      randomOffer.getMaxUses(), randomOffer.getMerchantExperience(),
+                                      randomOffer.getPriceMultiplier()
+    ));
     villager.setOffers(tradeOffers);
     
-    if(!user.abilities.creativeMode) {
+    if(!user.isCreative()) {
       stack.decrement(1);
     }
     

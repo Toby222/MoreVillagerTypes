@@ -23,7 +23,7 @@ public class MoreVillagers implements ModInitializer {
   public static final RuntimeResourcePack RESOURCE_PACK = RuntimeResourcePack
       .create(new Identifier(MOD_ID, "resources").toString());
   
-  private static boolean hasRunFirst = false;
+  private static final boolean hasRunFirst = false;
   
   public static void runFirst() {
     if(hasRunFirst) return;

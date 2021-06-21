@@ -24,6 +24,6 @@ public class Beekeeper extends CustomVillagerProfession {
     addTrade(profession, 3, new BeekeeperTradeOffers.EmeraldsForHoneycomb());
     addTrade(profession, 3, new BeekeeperTradeOffers.CampfireForEmerald());
     addTrade(profession, 4, new BeekeeperTradeOffers.LeadForEmeralds());
-    addTrade(profession, 5, new BeekeeperTradeOffers.PopulatedBeehiveForEmeralds());
+    addTrade(profession, 5, new BeekeeperTradeOffers.BeehiveForEmeralds());
   }
 }

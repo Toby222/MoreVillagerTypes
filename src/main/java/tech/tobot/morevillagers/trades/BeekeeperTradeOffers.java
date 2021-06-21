@@ -7,7 +7,8 @@ import net.minecraft.entity.passive.BeeEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtList;
 import net.minecraft.tag.ItemTags;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.village.TradeOffer;
@@ -105,7 +106,7 @@ public class BeekeeperTradeOffers {
     }
   }
   
-  public static class PopulatedBeehiveForEmeralds implements TradeOffers.Factory {
+  public static class BeehiveForEmeralds implements TradeOffers.Factory {
     @Nullable
     @Override
     public TradeOffer create(Entity entity, Random random) {
@@ -113,16 +114,23 @@ public class BeekeeperTradeOffers {
       ItemStack in1   = new ItemStack(Items.EMERALD, count);
       ItemStack out   = new ItemStack(Items.BEEHIVE);
       
-      BeehiveBlockEntity blockEntity = new BeehiveBlockEntity();
+      NbtList bees = new NbtList();
       
-      for(int i = 0; i <= 0; i++) {
-        BeeEntity bee = new BeeEntity(EntityType.BEE, entity.world);
-        blockEntity.tryEnterHive(bee, false, 0);
+      for(int i = 0; i < BeehiveBlockEntity.MAX_BEE_COUNT; i++) {
+        BeeEntity beeEntity = new BeeEntity(EntityType.BEE, entity.world);
+        NbtCompound beeEntityData = new NbtCompound();
+        beeEntity.saveSelfNbt(beeEntityData);
+        
+        NbtCompound bee = new NbtCompound();
+        bee.put("EntityData", beeEntityData);
+        bee.putInt("TicksInHive", 0);
+        bee.putInt("MinOccupationTicks", 0);
+        bees.add(bee);
       }
       
-      CompoundTag beesTag  = new CompoundTag();
-      CompoundTag honeyTag = new CompoundTag();
-      beesTag.put("Bees", blockEntity.getBees());
+      NbtCompound beesTag  = new NbtCompound();
+      NbtCompound honeyTag = new NbtCompound();
+      beesTag.put("Bees", bees);
       honeyTag.putInt("honey_level", 0);
       out.putSubTag("BlockEntityTag", beesTag);
       out.putSubTag("BlockStateTag", honeyTag);

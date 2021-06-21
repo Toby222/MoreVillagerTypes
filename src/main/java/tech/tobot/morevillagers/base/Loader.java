@@ -8,7 +8,6 @@ import tech.tobot.morevillagers.base.iface.Module;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 import java.util.function.Consumer;
 
 public class Loader {
