@@ -12,9 +12,7 @@ jobs:
       matrix:
         # Use these Java versions
         java: [
-            1.8,  # Minimum supported by Minecraft
-            11,   # Current Java LTS
-            15    # Latest version
+            16
         ]
         # and run on both Linux and Windows
         os: [ubuntu-20.04, windows-latest]
@@ -34,14 +32,15 @@ jobs:
       - name: build
         run: ./gradlew build
       - name: capture build artifacts
-        if: ${{ runner.os == 'Linux' && matrix.java == '11' }} # Only upload artifacts built from LTS java on one OS
+        if: ${{ runner.os == 'Linux' && matrix.java == '16' }} # Only upload artifacts built from LTS java on one OS
         uses: actions/upload-artifact@v2
         with:
           name: Artifacts
           path: build/libs/
 
       - name: read version
-        if: ${{ runner.os == 'Linux' && matrix.java == '11' && success() }} # Create release only from uploaded artifacts
+        if: ${{ runner.os == 'Linux' && matrix.java == '16' && success() }} # Create release only from uploaded
+        artifacts
         id: readFabricModJson
         run: |
           content=`cat build/resources/main/fabric.mod.json`
@@ -53,7 +52,8 @@ jobs:
           echo "::set-output name=fabricModJson::$content"
 
       - name: if pre-release create new release with latest-pre tag
-        if: ${{ runner.os == 'Linux' && matrix.java == '11' && contains(fromJson(steps.readFabricModJson.outputs.fabricModJson).version, 'pre')}}
+        if: ${{ runner.os == 'Linux' && matrix.java == '16' && contains(fromJson(steps.readFabricModJson.outputs
+        .fabricModJson).version, 'pre')}}
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
@@ -62,7 +62,8 @@ jobs:
           title: ${{ fromJson(steps.readFabricModJson.outputs.fabricModJson).version }}
           files: build/libs/
       - name: if release create new release with latest tag
-        if: ${{ runner.os == 'Linux' && matrix.java == '11' && !contains(fromJson(steps.readFabricModJson.outputs.fabricModJson).version, 'pre')}}
+        if: ${{ runner.os == 'Linux' && matrix.java == '16' && !contains(fromJson(steps.readFabricModJson.outputs
+        .fabricModJson).version, 'pre')}}
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
@@ -71,14 +72,15 @@ jobs:
           title: ${{ fromJson(steps.readFabricModJson.outputs.fabricModJson).version }}
           files: build/libs/
       - name: set version tag
-        if: ${{ runner.os == 'Linux' && matrix.java == '11' }}
+        if: ${{ runner.os == 'Linux' && matrix.java == '16' }}
         uses: richardsimko/update-tag@v1.0.5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
         with:
           tag_name: v${{ fromJson(steps.readFabricModJson.outputs.fabricModJson).version }}
       - name: set latest-pre tag for full version
-        if: ${{ runner.os == 'Linux' && matrix.java == '11' && !contains(fromJson(steps.readFabricModJson.outputs.fabricModJson).version, 'pre')}}
+        if: ${{ runner.os == 'Linux' && matrix.java == '16' && !contains(fromJson(steps.readFabricModJson.outputs
+        .fabricModJson).version, 'pre')}}
         uses: richardsimko/update-tag@v1.0.5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
